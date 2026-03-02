@@ -8,61 +8,57 @@ const platforms = [
 ];
 
 const textPlatforms = [
-  { name: "Zoho", initials: "Z" },
-  { name: "Hikvision", initials: "HK" },
-  { name: "Hyper-V", initials: "HV" },
+  { name: "Zoho" },
+  { name: "Hikvision" },
+  { name: "Hyper-V" },
+];
+
+const allPlatforms = [
+  ...platforms.map(p => ({ ...p, type: "logo" as const })),
+  ...textPlatforms.map(p => ({ ...p, type: "text" as const, logo: "" })),
 ];
 
 const PlatformsSection = () => {
   return (
-    <section id="platforms" className="section-padding bg-section-alt">
-      <div className="container mx-auto">
+    <section id="platforms" className="section-padding bg-hero relative overflow-hidden">
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[200px]" />
+
+      <div className="container mx-auto relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center max-w-2xl mx-auto mb-16"
+          className="text-center max-w-xl mx-auto mb-20"
         >
-          <span className="text-sm font-semibold text-primary uppercase tracking-widest">Plataformas</span>
-          <h2 className="text-3xl md:text-5xl font-display font-bold text-foreground mt-3">
-            Tecnologias que <span className="text-gradient">dominamos</span>
+          <span className="text-xs font-semibold text-primary uppercase tracking-[0.3em]">Platforms</span>
+          <h2 className="text-4xl md:text-5xl font-display font-bold text-hero-foreground mt-4 leading-[1.1]">
+            Our tech stack<span className="text-primary">.</span>
           </h2>
-          <p className="text-muted-foreground mt-4">
-            Trabalhamos com as melhores plataformas do mercado para entregar soluções robustas.
+          <p className="text-hero-foreground/40 mt-4 text-sm">
+            We work with industry-leading platforms to deliver robust, scalable solutions.
           </p>
         </motion.div>
 
-        <div className="flex flex-wrap justify-center gap-8 md:gap-12">
-          {platforms.map((p, i) => (
-            <motion.div
-              key={p.name}
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.08 }}
-              className="flex flex-col items-center gap-3 group"
-            >
-              <div className="w-20 h-20 md:w-24 md:h-24 rounded-2xl bg-card border border-border flex items-center justify-center p-4 group-hover:border-primary/30 group-hover:shadow-lg transition-all">
-                <img src={p.logo} alt={p.name} className="w-12 h-12 md:w-14 md:h-14 object-contain" />
+        {/* Horizontal marquee-style strip */}
+        <div className="overflow-hidden">
+          <motion.div 
+            className="flex gap-6 animate-scroll-left"
+            style={{ width: "max-content" }}
+          >
+            {[...allPlatforms, ...allPlatforms].map((p, i) => (
+              <div
+                key={`${p.name}-${i}`}
+                className="flex items-center gap-4 px-8 py-5 rounded-full border border-hero-foreground/5 bg-hero-foreground/[0.02] hover:border-primary/20 transition-all shrink-0"
+              >
+                {p.type === "logo" ? (
+                  <img src={p.logo} alt={p.name} className="w-8 h-8 object-contain opacity-60" />
+                ) : (
+                  <span className="text-lg font-display font-bold text-hero-foreground/60">{p.name[0]}</span>
+                )}
+                <span className="text-sm font-medium text-hero-foreground/50">{p.name}</span>
               </div>
-              <span className="text-sm font-medium text-muted-foreground group-hover:text-foreground transition-colors">{p.name}</span>
-            </motion.div>
-          ))}
-          {textPlatforms.map((p, i) => (
-            <motion.div
-              key={p.name}
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: (platforms.length + i) * 0.08 }}
-              className="flex flex-col items-center gap-3 group"
-            >
-              <div className="w-20 h-20 md:w-24 md:h-24 rounded-2xl bg-card border border-border flex items-center justify-center group-hover:border-primary/30 group-hover:shadow-lg transition-all">
-                <span className="text-2xl font-display font-bold text-foreground">{p.initials}</span>
-              </div>
-              <span className="text-sm font-medium text-muted-foreground group-hover:text-foreground transition-colors">{p.name}</span>
-            </motion.div>
-          ))}
+            ))}
+          </motion.div>
         </div>
       </div>
     </section>

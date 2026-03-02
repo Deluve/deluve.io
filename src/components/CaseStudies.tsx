@@ -4,68 +4,74 @@ import { ArrowUpRight } from "lucide-react";
 const cases = [
   {
     tag: "Fintech",
-    title: "Plataforma de Pagamentos Digital",
-    description: "Desenvolvimento de uma solução de pagamentos mobile-first com integração a múltiplos provedores, processando milhares de transações diárias.",
-    metrics: ["3x mais transações", "99.9% uptime", "40% redução de custos"],
+    title: "Digital Payments Platform",
+    description: "Mobile-first payment solution integrated with multiple providers, processing thousands of daily transactions.",
+    metrics: ["3x more transactions", "99.9% uptime", "40% cost reduction"],
   },
   {
-    tag: "Saúde",
-    title: "Sistema de Gestão Hospitalar",
-    description: "Automação completa de processos hospitalares com integração de IoT para monitoramento em tempo real de pacientes e recursos.",
-    metrics: ["60% mais eficiência", "200+ dispositivos IoT", "Zero downtime"],
+    tag: "Healthcare",
+    title: "Hospital Management System",
+    description: "Full process automation with IoT integration for real-time patient and resource monitoring.",
+    metrics: ["60% more efficiency", "200+ IoT devices", "Zero downtime"],
   },
   {
     tag: "Retail",
-    title: "E-commerce com IA Integrada",
-    description: "Plataforma de comércio eletrónico com recomendações inteligentes e gestão automatizada de inventário via machine learning.",
-    metrics: ["45% mais vendas", "2x conversão", "Inventário automatizado"],
+    title: "AI-Powered E-commerce",
+    description: "E-commerce platform with intelligent recommendations and automated inventory management via machine learning.",
+    metrics: ["45% more sales", "2x conversion", "Automated inventory"],
   },
 ];
 
 const CaseStudies = () => {
   return (
-    <section id="cases" className="section-padding bg-background">
-      <div className="container mx-auto">
+    <section id="cases" className="section-padding bg-hero relative overflow-hidden">
+      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[150px]" />
+      
+      <div className="container mx-auto relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center max-w-2xl mx-auto mb-16"
+          className="mb-16"
         >
-          <span className="text-sm font-semibold text-primary uppercase tracking-widest">Case Studies</span>
-          <h2 className="text-3xl md:text-5xl font-display font-bold text-foreground mt-3">
-            Projectos que <span className="text-gradient">geram impacto</span>
+          <span className="text-xs font-semibold text-primary uppercase tracking-[0.3em]">Case Studies</span>
+          <h2 className="text-4xl md:text-5xl font-display font-bold text-hero-foreground mt-4 leading-[1.1]">
+            Impact-driven<br />
+            <span className="text-hero-foreground/30">results.</span>
           </h2>
         </motion.div>
 
-        <div className="grid lg:grid-cols-3 gap-6">
+        {/* Stacked asymmetric cards */}
+        <div className="space-y-4">
           {cases.map((item, i) => (
             <motion.div
               key={item.title}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              className="group relative bg-hero rounded-2xl p-8 flex flex-col justify-between min-h-[380px] overflow-hidden hover:scale-[1.02] transition-transform duration-300"
+              transition={{ delay: i * 0.12 }}
+              className="group grid md:grid-cols-12 gap-6 bg-hero-foreground/[0.03] border border-hero-foreground/5 rounded-2xl p-6 md:p-8 hover:border-primary/20 transition-all duration-500"
             >
-              <div>
-                <span className="inline-block bg-primary/20 text-primary text-xs font-semibold px-3 py-1 rounded-full mb-6">
+              <div className="md:col-span-2 flex items-start">
+                <span className="inline-block bg-primary/15 text-primary text-xs font-semibold px-3 py-1 rounded-full">
                   {item.tag}
                 </span>
-                <h3 className="text-2xl font-display font-bold text-hero-foreground mb-3">{item.title}</h3>
-                <p className="text-hero-foreground/60 text-sm leading-relaxed">{item.description}</p>
               </div>
-
-              <div className="flex flex-wrap gap-2 mt-6">
+              <div className="md:col-span-6">
+                <h3 className="text-2xl font-display font-bold text-hero-foreground mb-2 group-hover:text-primary transition-colors">{item.title}</h3>
+                <p className="text-hero-foreground/40 text-sm leading-relaxed">{item.description}</p>
+              </div>
+              <div className="md:col-span-3 flex flex-wrap md:flex-col gap-2 md:gap-3 justify-start">
                 {item.metrics.map((m) => (
-                  <span key={m} className="text-xs bg-hero-foreground/10 text-hero-foreground/80 px-3 py-1.5 rounded-full">
+                  <span key={m} className="text-xs bg-hero-foreground/5 text-hero-foreground/60 px-3 py-1.5 rounded-full">
                     {m}
                   </span>
                 ))}
               </div>
-
-              <div className="absolute top-6 right-6 w-10 h-10 rounded-full bg-hero-foreground/10 flex items-center justify-center group-hover:bg-primary transition-colors">
-                <ArrowUpRight className="text-hero-foreground/50 group-hover:text-primary-foreground transition-colors" size={18} />
+              <div className="md:col-span-1 flex items-start justify-end">
+                <div className="w-10 h-10 rounded-full border border-hero-foreground/10 flex items-center justify-center group-hover:bg-primary group-hover:border-primary transition-all">
+                  <ArrowUpRight className="text-hero-foreground/30 group-hover:text-primary-foreground transition-colors" size={16} />
+                </div>
               </div>
             </motion.div>
           ))}

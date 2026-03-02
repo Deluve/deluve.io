@@ -8,65 +8,76 @@ import {
 
 const faqs = [
   {
-    q: "Que tipo de empresas a Deluve atende?",
-    a: "Trabalhamos com startups em fase inicial, empresas em crescimento e organizações estabelecidas que buscam inovação tecnológica e transformação digital.",
+    q: "What types of companies does Deluve serve?",
+    a: "We work with early-stage startups, growing companies, and established organizations seeking technological innovation and digital transformation.",
   },
   {
-    q: "Quanto tempo demora um projecto típico?",
-    a: "Depende da complexidade, mas um MVP pode ser entregue em 4-8 semanas. Projectos mais complexos seguem roadmaps personalizados com entregas incrementais.",
+    q: "How long does a typical project take?",
+    a: "It depends on complexity, but an MVP can be delivered in 4-8 weeks. More complex projects follow personalized roadmaps with incremental deliveries.",
   },
   {
-    q: "Quais tecnologias vocês utilizam?",
-    a: "Utilizamos um stack moderno incluindo AWS, GCP, React, Node.js, Python, além de plataformas como Zoho, WordPress, Hikvision e soluções de virtualização Hyper-V.",
+    q: "What technologies do you use?",
+    a: "We use a modern stack including AWS, GCP, React, Node.js, Python, plus platforms like Zoho, WordPress, Hikvision, and Hyper-V virtualization solutions.",
   },
   {
-    q: "Como funciona o modelo de consultoria?",
-    a: "Começamos com um diagnóstico completo, seguido de um plano estratégico com KPIs claros. Acompanhamos a implementação e medimos resultados continuamente.",
+    q: "How does the consulting model work?",
+    a: "We start with a comprehensive diagnosis, followed by a strategic plan with clear KPIs. We monitor implementation and continuously measure results.",
   },
   {
-    q: "Oferecem suporte pós-implementação?",
-    a: "Sim, oferecemos planos de suporte contínuo com SLAs definidos, monitoramento proativo e manutenção evolutiva dos sistemas implementados.",
+    q: "Do you offer post-implementation support?",
+    a: "Yes, we offer continuous support plans with defined SLAs, proactive monitoring, and evolutionary maintenance of implemented systems.",
   },
 ];
 
 const FAQSection = () => {
   return (
-    <section id="faq" className="section-padding bg-section-alt">
-      <div className="container mx-auto max-w-3xl">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <span className="text-sm font-semibold text-primary uppercase tracking-widest">FAQ</span>
-          <h2 className="text-3xl md:text-5xl font-display font-bold text-foreground mt-3">
-            Perguntas <span className="text-gradient">Frequentes</span>
-          </h2>
-        </motion.div>
+    <section id="faq" className="section-padding bg-background">
+      <div className="container mx-auto">
+        <div className="grid lg:grid-cols-12 gap-12 lg:gap-20">
+          {/* Left heading */}
+          <div className="lg:col-span-5">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+            >
+              <span className="text-xs font-semibold text-primary uppercase tracking-[0.3em]">FAQ</span>
+              <h2 className="text-4xl md:text-5xl font-display font-bold text-foreground mt-4 leading-[1.1]">
+                Questions<span className="text-primary">?</span><br />
+                <span className="text-muted-foreground/40">Answers.</span>
+              </h2>
+              <p className="text-muted-foreground mt-6 text-sm leading-relaxed">
+                Everything you need to know about working with us. Can't find the answer? Reach out directly.
+              </p>
+            </motion.div>
+          </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-        >
-          <Accordion type="single" collapsible className="space-y-3">
-            {faqs.map((faq, i) => (
-              <AccordionItem
-                key={i}
-                value={`faq-${i}`}
-                className="bg-card border border-border rounded-xl px-6 data-[state=open]:border-primary/30"
-              >
-                <AccordionTrigger className="text-left font-display font-semibold text-foreground hover:no-underline py-5">
-                  {faq.q}
-                </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground leading-relaxed pb-5">
-                  {faq.a}
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
-        </motion.div>
+          {/* Right accordion */}
+          <div className="lg:col-span-7">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+            >
+              <Accordion type="single" collapsible className="space-y-2">
+                {faqs.map((faq, i) => (
+                  <AccordionItem
+                    key={i}
+                    value={`faq-${i}`}
+                    className="border-b border-border px-0 data-[state=open]:border-primary/20"
+                  >
+                    <AccordionTrigger className="text-left font-display font-semibold text-foreground hover:no-underline hover:text-primary transition-colors py-6 text-base">
+                      {faq.q}
+                    </AccordionTrigger>
+                    <AccordionContent className="text-muted-foreground leading-relaxed pb-6">
+                      {faq.a}
+                    </AccordionContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
+            </motion.div>
+          </div>
+        </div>
       </div>
     </section>
   );
