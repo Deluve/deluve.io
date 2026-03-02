@@ -1,88 +1,110 @@
 import { motion } from "framer-motion";
-import { ArrowRight, Rocket } from "lucide-react";
-import heroBg from "@/assets/hero-bg.jpg";
+import { ArrowRight, ArrowDownRight } from "lucide-react";
 
 const HeroSection = () => {
   return (
-    <section className="relative min-h-screen flex items-center bg-hero overflow-hidden">
-      {/* Background image */}
-      <div className="absolute inset-0">
-        <img src={heroBg} alt="" className="w-full h-full object-cover opacity-40" />
-        <div className="absolute inset-0 bg-gradient-to-r from-hero via-hero/90 to-hero/50" />
-      </div>
+    <section className="relative min-h-screen bg-hero overflow-hidden">
+      {/* Ambient glow */}
+      <div className="absolute top-1/4 -right-32 w-[600px] h-[600px] bg-primary/10 rounded-full blur-[150px]" />
+      <div className="absolute bottom-0 left-1/4 w-[400px] h-[400px] bg-primary/5 rounded-full blur-[120px]" />
 
-      <div className="container mx-auto px-6 relative z-10 pt-20">
-        <div className="max-w-3xl">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
-          >
-            <div className="inline-flex items-center gap-2 bg-primary/15 border border-primary/30 rounded-full px-4 py-1.5 mb-8">
-              <Rocket size={14} className="text-primary" />
-              <span className="text-sm font-medium text-primary">Startup Studio & IT Consulting</span>
+      <div className="container mx-auto px-6 relative z-10 pt-32 pb-20 min-h-screen flex flex-col justify-between">
+        {/* Top row - tagline */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="flex items-center gap-3"
+        >
+          <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+          <span className="text-sm font-medium text-hero-foreground/40 uppercase tracking-[0.3em]">
+            Startup Studio & IT Consulting
+          </span>
+        </motion.div>
+
+        {/* Main headline - asymmetric */}
+        <div className="flex-1 flex items-center py-12">
+          <div className="w-full">
+            <motion.h1
+              initial={{ opacity: 0, y: 60 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="text-5xl md:text-7xl lg:text-[6.5rem] font-display font-bold text-hero-foreground leading-[0.95] tracking-tight"
+            >
+              We build
+            </motion.h1>
+            <motion.h1
+              initial={{ opacity: 0, y: 60 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.35 }}
+              className="text-5xl md:text-7xl lg:text-[6.5rem] font-display font-bold text-gradient leading-[0.95] tracking-tight md:ml-[15%]"
+            >
+              the future.
+            </motion.h1>
+            
+            <div className="grid md:grid-cols-2 gap-8 mt-12 md:mt-16">
+              <div />
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: 0.5 }}
+              >
+                <p className="text-lg text-hero-foreground/50 leading-relaxed max-w-md">
+                  We create, develop, and accelerate innovative startups through automation, IT consulting, and advanced software development.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4 mt-8">
+                  <a
+                    href="#contact"
+                    className="inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground font-semibold px-7 py-3.5 rounded-full hover:bg-primary/90 transition-colors"
+                  >
+                    Start a Project <ArrowRight size={18} />
+                  </a>
+                  <a
+                    href="#services"
+                    className="inline-flex items-center justify-center gap-2 text-hero-foreground/50 font-medium px-7 py-3.5 rounded-full hover:text-hero-foreground transition-colors"
+                  >
+                    Explore Services
+                  </a>
+                </div>
+              </motion.div>
             </div>
-          </motion.div>
-
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.15 }}
-            className="text-4xl md:text-6xl lg:text-7xl font-display font-bold text-hero-foreground leading-[1.1] mb-6"
-          >
-            Transformamos ideias em{" "}
-            <span className="text-gradient">negócios escaláveis</span>
-          </motion.h1>
-
-          <motion.p
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.3 }}
-            className="text-lg md:text-xl text-hero-foreground/60 max-w-xl mb-10 leading-relaxed"
-          >
-            Criamos, desenvolvemos e aceleramos startups inovadoras. Automação, consultoria IT e desenvolvimento de software para resultados mensuráveis.
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.45 }}
-            className="flex flex-col sm:flex-row gap-4"
-          >
-            <a
-              href="#contact"
-              className="inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground font-semibold px-7 py-3.5 rounded-lg hover:bg-primary/90 transition-colors text-base"
-            >
-              Iniciar Projecto <ArrowRight size={18} />
-            </a>
-            <a
-              href="#services"
-              className="inline-flex items-center justify-center gap-2 border border-hero-foreground/20 text-hero-foreground font-semibold px-7 py-3.5 rounded-lg hover:bg-hero-foreground/5 transition-colors text-base"
-            >
-              Nossos Serviços
-            </a>
-          </motion.div>
-
-          {/* Stats */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.7, delay: 0.7 }}
-            className="flex gap-10 md:gap-16 mt-16 pt-10 border-t border-hero-foreground/10"
-          >
-            {[
-              { value: "50+", label: "Projectos Entregues" },
-              { value: "98%", label: "Satisfação dos Clientes" },
-              { value: "15+", label: "Tecnologias Dominadas" },
-            ].map((stat) => (
-              <div key={stat.label}>
-                <div className="text-3xl md:text-4xl font-display font-bold text-primary">{stat.value}</div>
-                <div className="text-sm text-hero-foreground/50 mt-1">{stat.label}</div>
-              </div>
-            ))}
-          </motion.div>
+          </div>
         </div>
+
+        {/* Bottom stats - horizontal scroll feel */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.8 }}
+          className="grid grid-cols-3 border-t border-hero-foreground/10 pt-8"
+        >
+          {[
+            { value: "50+", label: "Projects Delivered" },
+            { value: "98%", label: "Client Satisfaction" },
+            { value: "15+", label: "Technologies Mastered" },
+          ].map((stat, i) => (
+            <div key={stat.label} className={`${i > 0 ? "border-l border-hero-foreground/10 pl-8" : ""}`}>
+              <div className="text-3xl md:text-5xl font-display font-bold text-hero-foreground">{stat.value}</div>
+              <div className="text-xs md:text-sm text-hero-foreground/30 mt-1 uppercase tracking-wider">{stat.label}</div>
+            </div>
+          ))}
+        </motion.div>
       </div>
+
+      {/* Scroll indicator */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.2 }}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2"
+      >
+        <motion.div
+          animate={{ y: [0, 8, 0] }}
+          transition={{ repeat: Infinity, duration: 2 }}
+        >
+          <ArrowDownRight size={20} className="text-hero-foreground/20" />
+        </motion.div>
+      </motion.div>
     </section>
   );
 };

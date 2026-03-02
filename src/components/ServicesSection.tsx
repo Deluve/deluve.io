@@ -4,67 +4,81 @@ import { Code, Cloud, Cog, BarChart3, Smartphone, Database } from "lucide-react"
 const services = [
   {
     icon: Code,
-    title: "Desenvolvimento de Software",
-    description: "Aplicações web e mobile à medida, com foco em performance, segurança e escalabilidade.",
+    title: "Software Development",
+    description: "Custom web and mobile applications built for performance, security, and scale.",
+    size: "large",
   },
   {
     icon: Cloud,
-    title: "Infraestrutura Cloud",
-    description: "Migração, gestão e otimização de infraestruturas em AWS, GCP e ambientes híbridos.",
+    title: "Cloud Infrastructure",
+    description: "Migration, management, and optimization across AWS, GCP, and hybrid environments.",
+    size: "small",
   },
   {
     icon: Cog,
-    title: "Automação de Processos",
-    description: "Implementação de workflows automatizados para maximizar a eficiência operacional.",
+    title: "Process Automation",
+    description: "Automated workflows that maximize operational efficiency and cut costs.",
+    size: "small",
   },
   {
     icon: BarChart3,
-    title: "Consultoria IT",
-    description: "Análise estratégica e roadmaps tecnológicos para transformação digital orientada a resultados.",
+    title: "IT Consulting",
+    description: "Strategic analysis and technology roadmaps for results-driven digital transformation.",
+    size: "small",
   },
   {
     icon: Smartphone,
-    title: "Aceleração de Startups",
-    description: "Do MVP ao produto final — acompanhamos startups em todas as fases de crescimento.",
+    title: "Startup Acceleration",
+    description: "From MVP to final product — we support startups through every growth phase.",
+    size: "small",
   },
   {
     icon: Database,
     title: "Data & Analytics",
-    description: "Soluções de dados inteligentes para tomada de decisões baseadas em evidências.",
+    description: "Intelligent data solutions for evidence-based decision making.",
+    size: "large",
   },
 ];
 
 const ServicesSection = () => {
   return (
-    <section id="services" className="section-padding bg-section-alt">
+    <section id="services" className="section-padding bg-background relative">
       <div className="container mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center max-w-2xl mx-auto mb-16"
+          className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-16"
         >
-          <span className="text-sm font-semibold text-primary uppercase tracking-widest">Serviços</span>
-          <h2 className="text-3xl md:text-5xl font-display font-bold text-foreground mt-3">
-            Nossos Serviços <span className="text-gradient">Principais</span>
-          </h2>
-          <p className="text-muted-foreground mt-4">
-            Soluções completas para cada etapa da sua jornada tecnológica.
+          <div>
+            <span className="text-xs font-semibold text-primary uppercase tracking-[0.3em]">Services</span>
+            <h2 className="text-4xl md:text-5xl font-display font-bold text-foreground mt-4 leading-[1.1]">
+              What we do<span className="text-primary">.</span>
+            </h2>
+          </div>
+          <p className="text-muted-foreground max-w-sm text-sm leading-relaxed">
+            End-to-end solutions for every stage of your technology journey.
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* Bento grid */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
           {services.map((service, i) => (
             <motion.div
               key={service.title}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.08 }}
-              className="group relative p-8 rounded-2xl bg-card border border-border hover:border-primary/30 hover:shadow-xl hover:shadow-primary/5 transition-all duration-300"
+              transition={{ delay: i * 0.06 }}
+              className={`group relative p-8 rounded-2xl border border-border bg-card hover:border-primary/20 transition-all duration-500 ${
+                service.size === "large" ? "lg:col-span-2 lg:row-span-1" : ""
+              }`}
             >
-              <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300">
-                <service.icon size={24} className="text-primary group-hover:text-primary-foreground transition-colors" />
+              <div className="flex items-start justify-between mb-8">
+                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary group-hover:scale-110 transition-all duration-500">
+                  <service.icon size={22} className="text-primary group-hover:text-primary-foreground transition-colors" />
+                </div>
+                <span className="text-xs text-muted-foreground/40 font-mono">0{i + 1}</span>
               </div>
               <h3 className="text-xl font-display font-semibold text-foreground mb-3">{service.title}</h3>
               <p className="text-muted-foreground text-sm leading-relaxed">{service.description}</p>
