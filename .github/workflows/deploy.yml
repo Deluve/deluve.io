@@ -5,6 +5,10 @@ on:
     # run on any push (branch-agnostic) so deploying from feature branches is possible
     branches: [ '**' ]
 
+permissions:
+  contents: write
+  pages: write
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
