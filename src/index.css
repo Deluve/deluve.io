@@ -105,3 +105,12 @@
     @apply py-20 md:py-28 px-6 md:px-8;
   }
 }
+
+@keyframes marquee-cases {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee-cases {
+  animation: marquee-cases 40s linear infinite;
+}
