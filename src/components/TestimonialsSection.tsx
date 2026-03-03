@@ -27,18 +27,15 @@ const TestimonialsSection = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-16"
+          className="text-center mb-16"
         >
-          <div>
-            <span className="text-xs font-semibold text-primary uppercase tracking-[0.3em]">Testimonials</span>
-            <h2 className="text-4xl md:text-5xl font-display font-bold text-foreground mt-4 leading-[1.1]">
-              Client voices<span className="text-primary">.</span>
-            </h2>
-          </div>
+          <span className="text-xs font-semibold text-primary uppercase tracking-[0.3em]">Testimonials</span>
+          <h2 className="text-4xl md:text-5xl font-display font-bold text-foreground mt-4 leading-[1.1]">
+            Client voices<span className="text-primary">.</span>
+          </h2>
         </motion.div>
 
-        {/* Asymmetric testimonial layout */}
-        <div className="grid md:grid-cols-12 gap-4">
+        <div className="grid md:grid-cols-3 gap-4">
           {testimonials.map((t, i) => (
             <motion.div
               key={t.author}
@@ -46,13 +43,11 @@ const TestimonialsSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className={`p-8 rounded-2xl border border-border bg-card flex flex-col justify-between ${
-                i === 0 ? "md:col-span-7 md:row-span-1" : "md:col-span-5"
-              }`}
+              className="p-8 rounded-2xl border border-border bg-card flex flex-col justify-between"
             >
               <div>
-                <Quote className="text-primary/20 mb-6" size={36} />
-                <p className="text-foreground text-lg leading-relaxed">{t.quote}</p>
+                <Quote className="text-primary/20 mb-6" size={32} />
+                <p className="text-foreground leading-relaxed">{t.quote}</p>
               </div>
               <div className="mt-8 pt-6 border-t border-border">
                 <div className="font-display font-semibold text-foreground">{t.author}</div>

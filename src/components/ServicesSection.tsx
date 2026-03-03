@@ -28,8 +28,8 @@ const services = [
   },
   {
     icon: Smartphone,
-    title: "Startup Acceleration",
-    description: "From MVP to final product — we support startups through every growth phase.",
+    title: "Mobile Solutions",
+    description: "Native and cross-platform mobile apps designed for performance and seamless user experience.",
     size: "small",
   },
   {
