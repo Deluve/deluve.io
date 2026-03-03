@@ -27,6 +27,21 @@ const faqs = [
     q: "Do you offer post-implementation support?",
     a: "Yes, we offer continuous support plans with defined SLAs, proactive monitoring, and evolutionary maintenance of implemented systems.",
   },
+ 
+ 
+  {
+    q: "Do you offer training and knowledge transfer?",
+    a: "Yes, knowledge transfer is integral to our process. We provide comprehensive training to your teams, documentation, and ongoing support to ensure your team can maintain and evolve the solutions independently.",
+  },
+  {
+    q: "What's your approach to data security?",
+    a: "Security is paramount. We implement industry-standard practices including encrypted communications, secure authentication, compliance with GDPR/CCPA, regular security audits, and adherence to ISO 27001 standards.",
+  },
+ 
+  {
+    q: "How do you handle project communication and reporting?",
+    a: "We maintain transparent communication through regular sprint reviews, weekly status reports, and dedicated project managers. You'll have visibility into progress, budget, and timelines throughout the entire engagement.",
+  },
 ];
 
 const FAQSection = () => {
@@ -43,7 +58,7 @@ const FAQSection = () => {
             >
               <span className="text-xs font-semibold text-primary uppercase tracking-[0.3em]">FAQ</span>
               <h2 className="text-4xl md:text-5xl font-display font-bold text-foreground mt-4 leading-[1.1]">
-                Questions<span className="text-primary">?</span><br />
+                Questions<span className="text-gradient">?</span><br />
                 <span className="text-muted-foreground/40">Answers.</span>
               </h2>
               <p className="text-muted-foreground mt-6 text-sm leading-relaxed">
@@ -59,20 +74,31 @@ const FAQSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              <Accordion type="single" collapsible className="space-y-2">
+              <Accordion type="single" collapsible className="space-y-3">
                 {faqs.map((faq, i) => (
-                  <AccordionItem
+                  <motion.div
                     key={i}
-                    value={`faq-${i}`}
-                    className="border-b border-border px-0 data-[state=open]:border-primary/20"
+                    initial={{ opacity: 0, y: 10 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ delay: i * 0.1 }}
+                    viewport={{ once: true }}
+                    className="group relative"
                   >
-                    <AccordionTrigger className="text-left font-display font-semibold text-foreground hover:no-underline hover:text-primary transition-colors py-6 text-base">
-                      {faq.q}
-                    </AccordionTrigger>
-                    <AccordionContent className="text-muted-foreground leading-relaxed pb-6">
-                      {faq.a}
-                    </AccordionContent>
-                  </AccordionItem>
+                    {/* Halo effect */}
+                    <div className="absolute -inset-0.5 rounded-lg bg-gradient-to-r from-primary/20 via-transparent to-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10" />
+
+                    <AccordionItem
+                      value={`faq-${i}`}
+                      className="border-b border-border/60 px-4 py-0 rounded-lg transition-all duration-300 hover:border-primary/30 data-[state=open]:border-primary/30 data-[state=open]:bg-primary/5"
+                    >
+                      <AccordionTrigger className="text-left font-display font-semibold text-foreground hover:no-underline hover:text-primary transition-colors py-5 text-base group-hover:text-primary">
+                        {faq.q}
+                      </AccordionTrigger>
+                      <AccordionContent className="text-muted-foreground leading-relaxed pb-4 text-sm">
+                        {faq.a}
+                      </AccordionContent>
+                    </AccordionItem>
+                  </motion.div>
                 ))}
               </Accordion>
             </motion.div>

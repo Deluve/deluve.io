@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, Monitor, CreditCard, ShoppingCart, BarChart3, Smartphone, Database } from "lucide-react";
+import { ArrowUpRight, Monitor, CreditCard, ShoppingCart, BarChart3, Smartphone, Database } from "lucide-react";
 
 const cases = [
   {
@@ -39,34 +39,26 @@ const cases = [
     metrics: ["40% cost reduction", "Real-time reports"],
     icon: BarChart3,
   },
-  {
-    tag: "Analytics",
-    title: "BI Dashboard",
-    description: "Business intelligence platform with real-time data visualization and predictive analytics.",
-    fullDescription: "A powerful BI platform that connects to 10+ data sources and delivers custom KPI dashboards, predictive analytics, and automated report generation. Built for executive teams who need actionable insights at a glance.",
-    status: "Live",
-    metrics: ["10+ data sources", "Custom KPIs"],
-    icon: Monitor,
-  },
-  {
-    tag: "Mobile",
-    title: "Fleet Management App",
-    description: "Cross-platform mobile app for real-time fleet tracking and route optimization.",
-    fullDescription: "A cross-platform mobile application for fleet operators that provides real-time GPS tracking, intelligent route optimization, driver behavior monitoring, and fuel consumption analytics. The app reduced fuel costs by 30% and improved delivery times significantly.",
-    status: "Live",
-    metrics: ["30% fuel savings", "GPS tracking"],
-    icon: Smartphone,
-  },
+
 ];
 
 const CaseStudies = () => {
   const [selected, setSelected] = useState(0);
+  const previewRef = useRef<HTMLDivElement>(null);
   const active = cases[selected];
   const Icon = active.icon;
 
   return (
-    <section id="cases" className="section-padding bg-hero relative overflow-hidden">
-      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[150px]" />
+    <section id="cases" className="section-padding bg-background relative overflow-hidden">
+      <div className="pointer-events-none absolute inset-0">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="absolute -bottom-40 left-1/4 w-96 h-96 rounded-full bg-primary/8 blur-3xl"
+        />
+      </div>
 
       <div className="container mx-auto relative z-10">
         {/* Header */}
@@ -74,105 +66,120 @@ const CaseStudies = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-14"
+          className="mb-16"
         >
           <span className="text-xs font-semibold text-primary uppercase tracking-[0.3em]">#Projects</span>
-          <h2 className="text-4xl md:text-5xl font-display font-bold text-hero-foreground mt-4 leading-[1.1]">
+          <h2 className="text-4xl md:text-5xl font-display font-bold text-foreground mt-4 leading-[1.1]">
             Successful Cases<span className="text-primary">.</span>
           </h2>
         </motion.div>
 
         {/* Grid + Preview layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
           {/* Left: Project cards grid */}
-          <div className="grid grid-cols-2 gap-4">
-            {cases.map((item, i) => {
-              const ItemIcon = item.icon;
-              const isActive = selected === i;
-              return (
-                <motion.button
-                  key={item.title}
-                  onClick={() => setSelected(i)}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.05 }}
-                  className={`group relative text-left rounded-2xl border p-5 transition-all duration-300 cursor-pointer ${
-                    isActive
-                      ? "bg-primary/10 border-primary/40"
-                      : "bg-hero-foreground/[0.03] border-hero-foreground/5 hover:border-hero-foreground/15"
-                  }`}
-                >
-                  <div className="w-10 h-10 rounded-xl bg-hero-foreground/5 flex items-center justify-center mb-4">
-                    <ItemIcon className="w-5 h-5 text-primary" />
-                  </div>
-                  <h3 className={`text-base font-display font-bold mb-2 transition-colors ${
-                    isActive ? "text-primary" : "text-hero-foreground"
-                  }`}>
-                    {item.title}
-                  </h3>
-                  <p className="text-hero-foreground/40 text-xs leading-relaxed mb-4 line-clamp-2">
-                    {item.description}
-                  </p>
-                  <div className="flex items-center justify-between">
-                    <span className="inline-flex items-center gap-1.5 text-[11px] font-semibold text-primary">
-                      <span className="w-1.5 h-1.5 bg-primary rounded-full animate-pulse" />
-                      {item.status}
-                    </span>
-                    {isActive && (
-                      <ArrowRight className="w-4 h-4 text-primary" />
-                    )}
-                  </div>
-                </motion.button>
-              );
-            })}
+          <div className="lg:col-span-1">
+            <div className="grid grid-cols-2 gap-3 lg:grid-cols-1 lg:gap-3">
+              {cases.map((item, i) => {
+                const ItemIcon = item.icon;
+                const isActive = selected === i;
+                return (
+                  <motion.button
+                    key={item.title}
+                    onClick={() => setSelected(i)}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.05 }}
+                    whileHover={{ y: -2 }}
+                    className={`group relative text-left rounded-xl border p-4 transition-all duration-300 cursor-pointer overflow-hidden ${
+                      isActive
+                        ? "bg-primary/10 border-primary/30 shadow-lg shadow-primary/10"
+                        : "bg-card border-border hover:border-primary/20"
+                    }`}
+                  >
+                    <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+                    <div className="relative z-10">
+                      <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center mb-3 group-hover:bg-primary group-hover:scale-110 transition-all duration-300">
+                        <ItemIcon className="w-5 h-5 text-primary group-hover:text-primary-foreground" />
+                      </div>
+                      <h3 className={`text-sm font-display font-bold mb-1 transition-colors ${
+                        isActive ? "text-primary" : "text-foreground"
+                      }`}>
+                        {item.title}
+                      </h3>
+                      <p className="text-muted-foreground text-xs leading-relaxed line-clamp-2">
+                        {item.description}
+                      </p>
+                      <div className="flex items-center gap-2 mt-3">
+                        <span className="w-1.5 h-1.5 bg-primary rounded-full animate-pulse" />
+                        <span className="text-[11px] font-semibold text-primary uppercase">
+                          {item.status}
+                        </span>
+                      </div>
+                    </div>
+                  </motion.button>
+                );
+              })}
+            </div>
           </div>
 
           {/* Right: Preview panel */}
           <AnimatePresence mode="wait">
             <motion.div
+              ref={previewRef}
               key={selected}
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -20 }}
               transition={{ duration: 0.3 }}
-              className="bg-hero-foreground/[0.03] border border-hero-foreground/5 rounded-2xl p-8 flex flex-col justify-between min-h-[480px]"
+              className="lg:col-span-2 bg-card border border-border rounded-2xl p-6 md:p-8 flex flex-col justify-between overflow-hidden group relative"
             >
-              <div>
-                <div className="flex items-center justify-between mb-6">
-                  <div className="flex items-center gap-3">
-                    <span className="text-xs font-semibold text-primary uppercase tracking-wider bg-primary/10 px-3 py-1.5 rounded-full">
-                      {active.tag}
-                    </span>
-                    <span className="inline-flex items-center gap-1.5 text-[11px] font-semibold text-primary">
-                      <span className="w-1.5 h-1.5 bg-primary rounded-full animate-pulse" />
-                      {active.status}
-                    </span>
-                  </div>
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-primary/0 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+              <div className="relative z-10">
+                <div className="flex items-center gap-3 mb-6">
+                  <span className="text-xs font-semibold text-primary uppercase tracking-[0.15em] bg-primary/10 px-3 py-1.5 rounded-full border border-primary/20">
+                    {active.tag}
+                  </span>
+                  <span className="inline-flex items-center gap-1.5 text-[11px] font-semibold text-primary uppercase">
+                    <span className="w-1.5 h-1.5 bg-primary rounded-full animate-pulse" />
+                    {active.status}
+                  </span>
                 </div>
 
-                <h3 className="text-3xl md:text-4xl font-display font-bold text-hero-foreground mb-6">
+                <h3 className="text-3xl md:text-4xl font-display font-bold text-foreground mb-6 leading-[1.1]">
                   {active.title}
                 </h3>
 
-                {/* Mock preview area */}
-                <div className="w-full aspect-video rounded-xl bg-hero-foreground/[0.05] border border-hero-foreground/5 mb-6 flex items-center justify-center overflow-hidden">
-                  <div className="flex flex-col items-center gap-3 text-hero-foreground/20">
-                    <Icon className="w-16 h-16" />
-                    <span className="text-sm font-display font-semibold">{active.title}</span>
-                  </div>
+                {/* Icon preview area */}
+                <div className="w-full aspect-video rounded-2xl bg-gradient-to-br from-primary/10 to-primary/5 border border-primary/20 mb-6 flex items-center justify-center overflow-hidden">
+                  <motion.div
+                    whileHover={{ scale: 1.1 }}
+                    className="flex flex-col items-center gap-4"
+                  >
+                    <div className="w-20 h-20 rounded-2xl bg-primary/15 flex items-center justify-center">
+                      <Icon className="w-10 h-10 text-primary" />
+                    </div>
+                    <span className="text-sm font-display font-semibold text-foreground">{active.title}</span>
+                  </motion.div>
                 </div>
 
-                <p className="text-hero-foreground/50 text-sm leading-relaxed">
+                <p className="text-muted-foreground text-sm md:text-base leading-relaxed mb-6">
                   {active.fullDescription}
                 </p>
               </div>
 
-              <div className="flex flex-wrap gap-2 pt-6 mt-6 border-t border-hero-foreground/5">
+              <div className="relative z-10 flex flex-wrap gap-2 pt-6 border-t border-border">
                 {active.metrics.map((m) => (
-                  <span key={m} className="text-xs bg-hero-foreground/5 text-hero-foreground/60 px-3 py-1.5 rounded-full">
+                  <motion.span
+                    key={m}
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    className="text-xs bg-primary/10 text-primary font-semibold px-3 py-2 rounded-lg border border-primary/20"
+                  >
                     {m}
-                  </span>
+                  </motion.span>
                 ))}
               </div>
             </motion.div>

@@ -21,51 +21,83 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? "bg-hero/95 backdrop-blur-xl border-b border-white/5" : "bg-transparent"}`}>
-      <div className="container mx-auto flex items-center justify-between h-20 px-6">
-        <a href="#" className="text-2xl font-display font-bold text-hero-foreground tracking-tight">
+    <nav
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled
+          ? "bg-black/80 backdrop-blur-md border-b border-white/10"
+          : "bg-transparent"
+      }`}
+    >
+      <div className="container mx-auto px-6 h-20 flex items-center justify-between">
+        {/* Logo */}
+        <motion.a
+          href="#"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.3 }}
+          className="text-xl font-display font-bold text-white tracking-tight hover:text-primary transition-colors"
+        >
           deluve<span className="text-primary">.</span>
-        </a>
+        </motion.a>
 
-        <div className="hidden md:flex items-center gap-1">
-          {navLinks.map((link) => (
-            <a
+        {/* Desktop Navigation */}
+        <div className="hidden lg:flex items-center gap-8">
+          {navLinks.map((link, i) => (
+            <motion.a
               key={link.href}
               href={link.href}
-              className="text-sm text-hero-foreground/50 hover:text-hero-foreground px-4 py-2 rounded-full hover:bg-white/5 transition-all font-medium"
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: i * 0.05, duration: 0.3 }}
+              className="relative text-sm text-white/60 hover:text-white font-medium transition-colors group"
             >
               {link.label}
-            </a>
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-primary/0 group-hover:w-full transition-all duration-300" />
+            </motion.a>
           ))}
         </div>
 
-        <a
+        {/* CTA Button */}
+        <motion.a
           href="#contact"
-          className="hidden md:inline-flex items-center bg-primary text-primary-foreground text-sm font-semibold px-6 py-2.5 rounded-full hover:bg-primary/90 transition-colors"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.3 }}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          className="hidden lg:inline-flex items-center gap-2 bg-primary text-white text-sm font-semibold px-6 py-2.5 rounded-full hover:bg-primary/90 transition-colors"
         >
           Get in Touch
-        </a>
+        </motion.a>
 
-        <button onClick={() => setOpen(!open)} className="md:hidden text-hero-foreground">
+        {/* Mobile Menu Button */}
+        <motion.button
+          onClick={() => setOpen(!open)}
+          className="lg:hidden p-2 text-white hover:bg-white/10 rounded-lg transition-colors"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+        >
           {open ? <X size={24} /> : <Menu size={24} />}
-        </button>
+        </motion.button>
       </div>
 
+      {/* Mobile Navigation */}
       <AnimatePresence>
         {open && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-hero/95 backdrop-blur-xl border-t border-white/5"
+            transition={{ duration: 0.2 }}
+            className="lg:hidden bg-black/90 backdrop-blur-md border-t border-white/10"
           >
-            <div className="flex flex-col gap-1 p-6">
+            <div className="container mx-auto px-6 py-6 flex flex-col gap-2">
               {navLinks.map((link) => (
                 <a
                   key={link.href}
                   href={link.href}
                   onClick={() => setOpen(false)}
-                  className="text-hero-foreground/60 hover:text-hero-foreground py-3 px-4 rounded-xl hover:bg-white/5 transition-all font-medium"
+                  className="text-white/70 hover:text-white py-3 px-4 rounded-lg hover:bg-white/5 transition-all font-medium text-sm"
                 >
                   {link.label}
                 </a>
@@ -73,7 +105,7 @@ const Navbar = () => {
               <a
                 href="#contact"
                 onClick={() => setOpen(false)}
-                className="bg-primary text-primary-foreground text-sm font-semibold px-5 py-3 rounded-full text-center hover:bg-primary/90 transition-colors mt-2"
+                className="bg-primary text-white text-sm font-semibold px-5 py-3 rounded-lg text-center hover:bg-primary/90 transition-colors mt-4"
               >
                 Get in Touch
               </a>
