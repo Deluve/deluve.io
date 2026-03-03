@@ -48,7 +48,6 @@ export default defineConfig(({ mode }) => ({
           // Carousel separately
           'carousel': [
             'embla-carousel-react',
-            'embla-carousel-autoplay',
           ],
         },
       },
