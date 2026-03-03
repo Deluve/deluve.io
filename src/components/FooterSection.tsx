@@ -10,7 +10,7 @@ const FooterSection = () => {
   };
 
   return (
-    <footer id="contact" className="bg-black text-white relative overflow-hidden">
+    <footer id="contact" className="bg-neutral-900 text-white relative overflow-hidden">
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden -z-10">
         <motion.div
@@ -40,7 +40,7 @@ const FooterSection = () => {
                 Ready to<br />
                 <span className="text-gradient">innovate?</span>
               </h2>
-              <p className="text-white/60 mt-6 max-w-lg text-base leading-relaxed">
+              <p className="text-white/75 mt-6 max-w-lg text-base leading-relaxed">
                 Turn your vision into a scalable, high-impact product. Let's collaborate and build something extraordinary together.
               </p>
             </div>
@@ -55,7 +55,8 @@ const FooterSection = () => {
                 
                 <a
                   href="mailto:info@deluve.com"
-                  className="inline-flex items-center gap-3 bg-gradient-to-r from-primary to-primary/80 text-white font-semibold px-8 py-4 rounded-full hover:shadow-lg transition-all group/btn"
+                  aria-label="Send email to Deluve"
+                  className="inline-flex items-center gap-3 bg-gradient-to-r from-primary to-primary/80 text-white font-semibold px-8 py-4 rounded-full hover:shadow-lg transition-all group/btn focus:outline-none focus:ring-2 focus:ring-primary/60"
                 >
                   <Mail size={18} />
                   Get in Touch
@@ -82,11 +83,11 @@ const FooterSection = () => {
             <span className="text-3xl font-display font-bold tracking-tight">
               deluve<span className="text-gradient">.</span>
             </span>
-            <p className="text-white/50 text-sm mt-4 leading-relaxed">
+            <p className="text-white/70 text-sm mt-4 leading-relaxed">
               Startup Studio & IT Consulting based in Maputo, Mozambique. We create and accelerate innovative digital solutions.
             </p>
             <div className="flex gap-3 mt-6">
-              {[
+                {[
                 { icon: Linkedin, label: "LinkedIn" },
                 { icon: Github, label: "GitHub" },
                 { icon: Twitter, label: "Twitter" },
@@ -94,7 +95,8 @@ const FooterSection = () => {
                 <motion.a
                   key={i}
                   href="#"
-                  className="group/social relative"
+                  aria-label={social.label}
+                  className="group/social relative focus:outline-none focus:ring-2 focus:ring-primary/60 rounded-full"
                   whileHover={{ y: -4 }}
                 >
                   {/* Social icon glow */}
@@ -153,7 +155,8 @@ const FooterSection = () => {
                   <motion.a
                     key={idx}
                     href="#"
-                    className="text-white/50 text-sm hover:text-primary transition-colors relative group/link"
+                    aria-label={`${link} — ${section.title}`}
+                    className="text-white/60 text-sm hover:text-primary transition-colors relative group/link focus:outline-none focus:ring-2 focus:ring-primary/60"
                     variants={linkVariants}
                     initial="initial"
                     whileHover="hover"
@@ -178,40 +181,41 @@ const FooterSection = () => {
             <div className="space-y-4">
               <motion.a
                 href="mailto:info@deluve.com"
-                className="flex items-center gap-3 text-white/50 hover:text-primary transition-colors group/contact"
+                aria-label="Email info@deluve.com"
+                className="flex items-center gap-3 text-white/70 hover:text-primary transition-colors group/contact focus:outline-none focus:ring-2 focus:ring-primary/60"
                 whileHover={{ x: 4 }}
               >
                 <div className="p-2 rounded-lg bg-primary/10 group-hover/contact:bg-primary/20 transition-colors">
                   <Mail size={16} className="text-primary" />
                 </div>
                 <div className="flex flex-col">
-                  <span className="text-xs uppercase text-white/30 font-semibold">Email</span>
+                  <span className="text-xs uppercase text-white/60 font-semibold">Email</span>
                   <span className="text-sm">info@deluve.com</span>
                 </div>
               </motion.a>
 
               <motion.div
-                className="flex items-center gap-3 text-white/50"
+                className="flex items-center gap-3 text-white/70"
                 whileHover={{ x: 4 }}
               >
                 <div className="p-2 rounded-lg bg-primary/10">
                   <Phone size={16} className="text-primary" />
                 </div>
                 <div className="flex flex-col">
-                  <span className="text-xs uppercase text-white/30 font-semibold">Phone</span>
+                  <span className="text-xs uppercase text-white/60 font-semibold">Phone</span>
                   <span className="text-sm">+258 84 000 0000</span>
                 </div>
               </motion.div>
 
               <motion.div
-                className="flex items-center gap-3 text-white/50"
+                className="flex items-center gap-3 text-white/70"
                 whileHover={{ x: 4 }}
               >
                 <div className="p-2 rounded-lg bg-primary/10">
                   <MapPin size={16} className="text-primary" />
                 </div>
                 <div className="flex flex-col">
-                  <span className="text-xs uppercase text-white/30 font-semibold">Location</span>
+                  <span className="text-xs uppercase text-white/60 font-semibold">Location</span>
                   <span className="text-sm">Maputo, Mozambique</span>
                 </div>
               </motion.div>
@@ -229,7 +233,7 @@ const FooterSection = () => {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
         >
-          <span className="text-sm text-white/40">
+          <span className="text-sm text-white/60">
             © {currentYear} Deluve. All rights reserved.
           </span>
           <div className="flex gap-6">
@@ -237,7 +241,8 @@ const FooterSection = () => {
               <motion.a
                 key={i}
                 href="#"
-                className="text-sm text-white/40 hover:text-primary transition-colors"
+                aria-label={item}
+                className="text-sm text-white/60 hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary/60"
                 whileHover={{ y: -2 }}
               >
                 {item}

@@ -86,12 +86,14 @@ const CaseStudies = () => {
                   <motion.button
                     key={item.title}
                     onClick={() => setSelected(i)}
+                    aria-pressed={isActive}
+                    aria-label={`Open ${item.title} case study`}
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: i * 0.05 }}
                     whileHover={{ y: -2 }}
-                    className={`group relative text-left rounded-xl border p-4 transition-all duration-300 cursor-pointer overflow-hidden ${
+                    className={`group relative text-left rounded-xl border p-4 transition-all duration-300 cursor-pointer overflow-hidden focus:outline-none focus:ring-2 focus:ring-primary/60 ${
                       isActive
                         ? "bg-primary/10 border-primary/30 shadow-lg shadow-primary/10"
                         : "bg-card border-border hover:border-primary/20"
@@ -103,12 +105,12 @@ const CaseStudies = () => {
                       <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center mb-3 group-hover:bg-primary group-hover:scale-110 transition-all duration-300">
                         <ItemIcon className="w-5 h-5 text-primary group-hover:text-primary-foreground" />
                       </div>
-                      <h3 className={`text-sm font-display font-bold mb-1 transition-colors ${
+                      <h3 id={`case-title-${i}`} className={`text-sm font-display font-bold mb-1 transition-colors ${
                         isActive ? "text-primary" : "text-foreground"
                       }`}>
                         {item.title}
                       </h3>
-                      <p className="text-muted-foreground text-xs leading-relaxed line-clamp-2">
+                      <p className="text-foreground/75 text-xs leading-relaxed line-clamp-2">
                         {item.description}
                       </p>
                       <div className="flex items-center gap-2 mt-3">
@@ -133,6 +135,8 @@ const CaseStudies = () => {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -20 }}
               transition={{ duration: 0.3 }}
+              role="region"
+              aria-labelledby={`case-title-${selected}`}
               className="lg:col-span-2 bg-card border border-border rounded-2xl p-6 md:p-8 flex flex-col justify-between overflow-hidden group relative"
             >
               <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-primary/0 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -148,7 +152,7 @@ const CaseStudies = () => {
                   </span>
                 </div>
 
-                <h3 className="text-3xl md:text-4xl font-display font-bold text-foreground mb-6 leading-[1.1]">
+                <h3 id={`case-title-${selected}`} className="text-3xl md:text-4xl font-display font-bold text-foreground mb-6 leading-[1.1]">
                   {active.title}
                 </h3>
 
@@ -165,7 +169,7 @@ const CaseStudies = () => {
                   </motion.div>
                 </div>
 
-                <p className="text-muted-foreground text-sm md:text-base leading-relaxed mb-6">
+                <p className="text-foreground/85 text-sm md:text-base leading-relaxed mb-6">
                   {active.fullDescription}
                 </p>
               </div>

@@ -3,7 +3,7 @@ import { ArrowRight, ArrowDownRight } from "lucide-react";
 
 const HeroSection = () => {
   return (
-    <section className="relative min-h-screen bg-black overflow-hidden">
+    <section className="relative min-h-screen bg-neutral-900 overflow-hidden">
       <div className="container mx-auto px-6 relative z-10 pt-32 pb-20 min-h-screen flex flex-col justify-between">
         {/* Top row - tagline */}
         <motion.div
@@ -13,7 +13,7 @@ const HeroSection = () => {
           className="flex items-center gap-3"
         >
           <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-          <span className="text-sm font-medium text-white/50 uppercase tracking-[0.3em]">
+          <span className="text-sm font-medium text-white/60 uppercase tracking-[0.3em]">
             Startup Studio & IT Consulting
           </span>
         </motion.div>
@@ -45,7 +45,7 @@ const HeroSection = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.5 }}
               >
-                <p className="text-lg text-white/50 leading-relaxed max-w-md">
+                <p className="text-lg text-white/75 leading-relaxed max-w-md">
                   We create, develop, and accelerate innovative startups through automation, IT consulting, and advanced software development.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 mt-8">
@@ -57,7 +57,8 @@ const HeroSection = () => {
                   </a>
                   <a
                     href="#services"
-                    className="inline-flex items-center justify-center gap-2 text-white/50 font-medium px-7 py-3.5 rounded-full hover:text-white transition-colors"
+                    aria-label="Explore our services"
+                    className="inline-flex items-center justify-center gap-2 text-white/70 font-medium px-7 py-3.5 rounded-full hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-primary/60"
                   >
                     Explore Services
                   </a>
@@ -81,7 +82,7 @@ const HeroSection = () => {
           ].map((stat, i) => (
             <div key={stat.label} className={`${i > 0 ? "border-l border-white/10 pl-8" : ""}`}>
               <div className="text-3xl md:text-5xl font-display font-bold text-white">{stat.value}</div>
-              <div className="text-xs md:text-sm text-white/30 mt-1 uppercase tracking-wider">{stat.label}</div>
+              <div className="text-xs md:text-sm text-white/60 mt-1 uppercase tracking-wider">{stat.label}</div>
             </div>
           ))}
         </motion.div>
@@ -94,11 +95,11 @@ const HeroSection = () => {
         transition={{ delay: 1.2 }}
         className="absolute bottom-8 left-1/2 -translate-x-1/2"
       >
-        <motion.div
+          <motion.div
           animate={{ y: [0, 8, 0] }}
           transition={{ repeat: Infinity, duration: 2 }}
         >
-          <ArrowDownRight size={20} className="text-white/20" />
+          <ArrowDownRight size={20} aria-hidden="true" className="text-white/40" />
         </motion.div>
       </motion.div>
     </section>

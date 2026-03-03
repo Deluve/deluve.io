@@ -82,38 +82,43 @@ const ServicesSection = () => {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-6 gap-4">
           {services.map((service, i) => (
-            <motion.div
+            <motion.button
               key={service.title}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.06, duration: 0.5 }}
               whileHover={{ y: -4 }}
-              className={`group relative p-8 rounded-2xl border border-border bg-card hover:border-primary/30 transition-all duration-500 overflow-hidden ${service.span}`}
+              type="button"
+              aria-label={`Explore ${service.title} service`}
+              className={`group relative p-8 rounded-2xl border border-border bg-card hover:border-primary/30 transition-all duration-500 overflow-hidden focus:outline-none focus:ring-2 focus:ring-primary/60 ${service.span}`}
             >
               <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               <div className="absolute -right-10 -top-10 w-28 h-28 rounded-full border border-primary/15 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-              <div className="flex items-start justify-between mb-8">
+                <div className="flex items-start justify-between mb-8">
                 <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary group-hover:scale-110 transition-all duration-500">
                   <service.icon size={22} className="text-primary group-hover:text-primary-foreground transition-colors" />
                 </div>
-                <span className="text-xs text-muted-foreground/40 font-mono">0{i + 1}</span>
+                <span className="text-xs text-muted-foreground/70 font-mono">0{i + 1}</span>
               </div>
 
               <div className="relative z-10">
-                <span className="inline-flex items-center rounded-full border border-border px-3 py-1 text-[10px] tracking-[0.2em] uppercase text-muted-foreground mb-4">
+                <span className="inline-flex items-center rounded-full border border-border px-3 py-1 text-[10px] tracking-[0.2em] uppercase text-foreground/85 mb-4">
                   {service.highlight}
                 </span>
                 <h3 className="text-xl font-display font-semibold text-foreground mb-3">{service.title}</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed mb-6">{service.description}</p>
+                <p className="text-foreground/75 text-sm leading-relaxed mb-6">{service.description}</p>
 
-                <div className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-primary">
-                  Explore service
+                <button
+                  aria-label={`Explore ${service.title}`}
+                  className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-primary focus:outline-none focus:ring-2 focus:ring-primary/60"
+                >
+                  <span>Explore service</span>
                   <ArrowUpRight size={14} className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                </div>
+                </button>
               </div>
-            </motion.div>
+            </motion.button>
           ))}
         </div>
       </div>

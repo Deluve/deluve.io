@@ -61,7 +61,7 @@ const TestimonialsSection = () => {
   }, [emblaApi, onSelect]);
 
   return (
-    <section className="section-padding bg-black relative overflow-hidden">
+    <section className="section-padding bg-neutral-900 relative overflow-hidden">
       <div className="pointer-events-none absolute inset-0">
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
@@ -89,19 +89,21 @@ const TestimonialsSection = () => {
           <div className="flex items-center gap-3">
             <motion.button
               onClick={scrollPrev}
+              aria-label="Previous testimonial"
               disabled={!canScrollPrev}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="w-12 h-12 rounded-xl border border-white/20 bg-white/5 flex items-center justify-center hover:bg-primary hover:border-primary transition-all disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-white/5 disabled:hover:border-white/20"
+              className="w-12 h-12 rounded-xl border border-white/20 bg-white/5 flex items-center justify-center hover:bg-primary hover:border-primary transition-all disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-white/5 disabled:hover:border-white/20 focus:outline-none focus:ring-2 focus:ring-primary/60"
             >
               <ChevronLeft size={20} className="text-white" />
             </motion.button>
             <motion.button
               onClick={scrollNext}
+              aria-label="Next testimonial"
               disabled={!canScrollNext}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="w-12 h-12 rounded-xl border border-white/20 bg-white/5 flex items-center justify-center hover:bg-primary hover:border-primary transition-all disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-white/5 disabled:hover:border-white/20"
+              className="w-12 h-12 rounded-xl border border-white/20 bg-white/5 flex items-center justify-center hover:bg-primary hover:border-primary transition-all disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-white/5 disabled:hover:border-white/20 focus:outline-none focus:ring-2 focus:ring-primary/60"
             >
               <ChevronRight size={20} className="text-white" />
             </motion.button>
@@ -119,7 +121,7 @@ const TestimonialsSection = () => {
                 transition={{ delay: i * 0.1 }}
                 className="flex-shrink-0 w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] group"
               >
-                <div className="relative p-8 rounded-2xl border border-white/10 bg-white/5 hover:border-primary/30 transition-all duration-500 flex flex-col justify-between h-full overflow-hidden">
+                <div className="relative p-8 rounded-2xl border border-white/20 bg-white/10 hover:border-primary/30 transition-all duration-500 flex flex-col justify-between h-full overflow-hidden">
                   <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                   <div className="absolute -right-12 -top-12 w-32 h-32 rounded-full border border-primary/15 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 

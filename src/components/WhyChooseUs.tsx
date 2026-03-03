@@ -30,7 +30,7 @@ const reasons = [
 
 const WhyChooseUs = () => {
   return (
-    <section id="why-us" className="section-padding bg-black relative overflow-hidden">
+    <section id="why-us" className="section-padding bg-neutral-900 relative overflow-hidden">
       <div className="pointer-events-none absolute inset-0">
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
@@ -73,13 +73,13 @@ const WhyChooseUs = () => {
               viewport={{ once: true }}
               transition={{ delay: i * 0.08, duration: 0.5 }}
               whileHover={{ y: -4 }}
-              className="group relative p-8 rounded-2xl border border-white/10 bg-white/5 hover:border-primary/30 transition-all duration-500 overflow-hidden"
+              className="group relative p-8 rounded-2xl border border-white/20 bg-white/10 hover:border-primary/30 transition-all duration-500 overflow-hidden"
             >
               <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               <div className="absolute -right-12 -top-12 w-32 h-32 rounded-full border border-primary/15 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
               <div className="relative z-10">
-                <span className="inline-flex items-center rounded-full border border-white/20 px-3 py-1 text-[10px] tracking-[0.2em] uppercase text-white/50 mb-6">
+                <span className="inline-flex items-center rounded-full border border-white/20 px-3 py-1 text-[10px] tracking-[0.2em] uppercase text-white/60 mb-6">
                   {reason.highlight}
                 </span>
 
